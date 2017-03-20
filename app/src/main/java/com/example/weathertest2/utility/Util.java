@@ -3,10 +3,18 @@ package com.example.weathertest2.utility;
 import com.example.weathertest2.db.City;
 import com.example.weathertest2.db.County;
 import com.example.weathertest2.db.Province;
+import com.example.weathertest2.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by yf on 2017/3/20.
@@ -75,5 +83,18 @@ public class Util {
         }
         return false;
 
+    }
+    public static Weather handleWeather(String responsText){
+        try {
+            JSONObject jsonObject=new JSONObject(responsText);
+            JSONArray jsonArray=jsonObject.getJSONArray("HeWeather");
+            String weatherobject=jsonArray.getJSONObject(0).toString();
+
+            return new Gson().fromJson(weatherobject,Weather.class);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
