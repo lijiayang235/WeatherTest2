@@ -6,24 +6,28 @@
     android:layout_margin="15dp"
     android:orientation="vertical">
 <TextView
+    android:layout_margin="15dp"
     android:text="我的建议"
     android:textSize="20sp"
     android:textColor="#fff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
     <TextView
+        android:layout_margin="15dp"
         android:id="@+id/comfort"
         android:textColor="#fff"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        android:layout_margin="15dp"
         android:id="@+id/carwash"
         android:textColor="#fff"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        android:layout_margin="15dp"
         android:id="@+id/sport"
         android:textColor="#fff"
         android:gravity="center_vertical"

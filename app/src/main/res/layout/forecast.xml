@@ -3,14 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#8000"
-    android:layout_margin="15dp">
+    android:layout_margin="15dp"
+    android:orientation="vertical">
     <TextView
+        android:layout_margin="15dp"
         android:text="天气预报"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"/>
     <LinearLayout
+
         android:orientation="vertical"
         android:id="@+id/forecastWeatherlayout"
         android:layout_width="match_parent"
