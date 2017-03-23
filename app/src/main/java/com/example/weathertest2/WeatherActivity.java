@@ -1,5 +1,6 @@
 package com.example.weathertest2;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.weathertest2.gson.Forecast;
 import com.example.weathertest2.gson.Weather;
+import com.example.weathertest2.service.AutoUpdateService;
 import com.example.weathertest2.utility.HttpUtil;
 import com.example.weathertest2.utility.Util;
 
@@ -81,8 +83,9 @@ public class WeatherActivity extends AppCompatActivity {
 
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
         String responseText=prefs.getString("weather",null);
-        if(!TextUtils.isEmpty(responseText)){
+        if(responseText!=null){
             Weather weather= Util.handleWeather(responseText);
+            mweatherId=weather.basic.weatherId;
             showWeather(weather);
         }else{
             mweatherId=getIntent().getStringExtra("weather_id");
@@ -157,7 +160,8 @@ public class WeatherActivity extends AppCompatActivity {
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
                         if(weather!=null){
-
+                            Intent intent=new Intent(WeatherActivity.this, AutoUpdateService.class);
+                            startActivity(intent);
                             SharedPreferences.Editor editor=PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                             editor.putString("weather",responseText);
                             editor.apply();
